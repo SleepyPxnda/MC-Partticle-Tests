@@ -3,8 +3,6 @@ package de.pxn.main;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -37,24 +35,23 @@ public class Events implements Listener {
 
 				heartcircle = new BukkitRunnable() {
 
-					
 					double t = 0;
 					double r = 1;
 
 					public void run() {
 						Location loc = p.getLocation();
 
-						t = t + Math.PI / 8;
-
+						 t += Math.PI/8;
+						
 						double x = r * Math.cos(t);
-						double y = loc.getY();
 						double z = r * Math.sin(t);
+						double y = (z / r) + 1;
 
-						loc.add(x, 0, z);
+						loc.add(x, y, z);
 
-						p.getWorld().playEffect(loc, Effect.HEART, 10);
+						p.getWorld().playEffect(loc, Effect.WATERDRIP, 10);
 
-						loc.subtract(x, 0, z);
+						loc.subtract(x, y, z);
 
 						/*if (t > Math.PI * 4) {
 							this.cancel();
