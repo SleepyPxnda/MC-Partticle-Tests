@@ -1,0 +1,7 @@
+name: Partikel
+version: 1.0
+main: de.pxn.main.Main
+
+commands:
+ start:
+  description: starts
