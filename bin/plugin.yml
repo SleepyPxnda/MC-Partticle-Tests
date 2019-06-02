@@ -1,7 +1,8 @@
-name: Partikel
+name: Particle
 version: 1.0
 main: de.pxn.main.Main
+api-version: 1.13
 
 commands:
- start:
-  description: starts
+ pss:
+  description: pss

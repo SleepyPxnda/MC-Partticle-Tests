@@ -15,6 +15,7 @@ public class Main extends JavaPlugin {
 
 		
 		Bukkit.getPluginManager().registerEvents(new Events(), this);
+		getCommand("pss").setExecutor(new Commands());
 	}
 	
 	

@@ -3,6 +3,7 @@ package de.pxn.main;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,18 +21,19 @@ public class Events implements Listener {
 	public void onJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
 
-		p.getInventory().setItem(0, new ItemStack(Material.BED, 1));
+		p.getInventory().setItem(0, new ItemStack(Material.BLACK_BED, 1));
 		p.getInventory().setItem(1, new ItemStack(Material.BEACON, 1));
 	}
 	
 	BukkitTask heartcircle;
 
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void toogle(PlayerInteractEvent e) {
 		final Player p = e.getPlayer();
 
 		if (e.getAction() == Action.LEFT_CLICK_AIR) {
-			if (p.getItemInHand().getType() == Material.BED) {
+			if (p.getItemInHand().getType() == Material.BLACK_BED) {
 
 				heartcircle = new BukkitRunnable() {
 
@@ -49,7 +51,7 @@ public class Events implements Listener {
 
 						loc.add(x, y, z);
 
-						p.getWorld().playEffect(loc, Effect.WATERDRIP, 10);
+						p.getWorld().spawnParticle(Particle.WATER_BUBBLE, loc, 1);
 
 						loc.subtract(x, y, z);
 
@@ -78,7 +80,7 @@ public class Events implements Listener {
 						
 						loc.add(x, y, z);
 						
-						loc.getWorld().playEffect(loc, Effect.NOTE, 1);
+						loc.getWorld().playEffect(loc, Effect.DRAGON_BREATH, 1);
 						
 						/*for(Entity e : loc.getChunk().getEntities()) {
 							if(e.getLocation().distance(loc) < 1.0) {
@@ -135,7 +137,7 @@ public class Events implements Listener {
 			}
 		}
 		else if(e.getAction() == Action.RIGHT_CLICK_AIR) {
-			if(p.getItemInHand().getType() == Material.BED) {
+			if(p.getItemInHand().getType() == Material.BLACK_BED) {
 				heartcircle.cancel();
 			}
 		}
